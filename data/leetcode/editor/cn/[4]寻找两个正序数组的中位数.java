@@ -43,6 +43,32 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        // 先判断是元素总数为奇数还是偶数
+        int count = nums1.length + nums2.length;
+
+        int[] arr = new int[count];
+        int l1 = 0, l2 = 0, p = 0;
+        while(l1 < nums1.length && l2 < nums2.length) {
+            if (nums1[l1] < nums2[l2]) {
+                arr[p++] = nums1[l1++];
+            } else {
+                arr[p++] = nums2[l2++];
+            }
+        }
+
+        while (l1 < nums1.length) {
+            arr[p++] = nums1[l1++];
+        }
+
+        while (l2 < nums2.length) {
+            arr[p++] = nums2[l2++];
+        }
+        // 1 2 3 4
+        if (count % 2 == 0) {
+            return (arr[(count - 2) / 2] +   arr[count / 2]) / 2.0;
+        }
+        return arr[(count - 1) / 2];
+
 
     }
 }
