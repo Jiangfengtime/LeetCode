@@ -57,21 +57,26 @@
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode root = new ListNode(0);
-        ListNode p0 = root, p1 = l1, p2 = l2;
-
-        int flag = 0;
-        while(p1 != null || p2 != null || flag != 0) {
-            int val1 = p1 ==null ? 0 : p1.val;
-            int val2 = p2 ==null ? 0 : p2.val;
-            int val = (flag + val1 + val2);
-            flag = val / 10;
-            p0.next = new ListNode(val % 10);
-            p0 = p0.next;
-            p1 = p1 == null ? p1 : p1.next;
-            p2 = p2 == null ? p2 : p2.next;
+        ListNode p = root;
+        ListNode p1 = l1;
+        ListNode p2 = l2;
+        int tmp = 0;
+        while (p1 != null || p2 != null || tmp != 0) {
+            int v1 = 0;
+            int v2 = 0;
+            if (p1 != null) {
+                v1 = p1.val;
+                p1 = p1.next;
+            }
+            if (p2 != null) {
+                v2 = p2.val;
+                p2 = p2.next;
+            }
+            p.next = new ListNode((v1 + v2 + tmp) % 10);
+            tmp = (v1 + v2 + tmp) / 10;
+            p = p.next;
         }
         return root.next;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
