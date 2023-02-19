@@ -1,0 +1,15 @@
+class Solution {
+    public int maximumProduct(int[] nums) {
+        int size = nums.length;
+        Arrays.sort(nums);
+        // 最大的三个数乘积
+        int sum1 = nums[size - 1] * nums[size - 2] * nums[size - 3];
+
+        // 最小的两个数和最大的一个数乘积
+        int sum2 = nums[0] * nums[1] * nums[size - 1];
+
+        return Math.max(sum1, sum2);
+    }
+}
+//runtime:12 ms
+//memory:39.7 MB
