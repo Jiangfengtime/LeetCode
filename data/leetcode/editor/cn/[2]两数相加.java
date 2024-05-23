@@ -57,11 +57,11 @@
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode root = new ListNode(0);
-        ListNode p = root;
         ListNode p1 = l1;
         ListNode p2 = l2;
+        ListNode p = root;
         int tmp = 0;
-        while (p1 != null || p2 != null || tmp != 0) {
+        while(p1 != null || p2 != null || tmp != 0) {
             int v1 = 0;
             int v2 = 0;
             if (p1 != null) {

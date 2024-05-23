@@ -43,7 +43,23 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int countBattleships(char[][] board) {
-
+        int row = board.length;
+        int col = board[0].length;
+        int res = 0;
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < col; j++) {
+                if(i > 0 && board[i - 1][j] == 'X') {
+                    continue;
+                }
+                if (j > 0 && board[i][j - 1] == 'X') {
+                    continue;
+                }
+                if (board[i][j] == 'X') {
+                    res++;
+                }
+            }
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

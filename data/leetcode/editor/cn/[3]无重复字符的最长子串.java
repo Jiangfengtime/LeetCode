@@ -44,22 +44,14 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        int left = 0, right = 0;
         int res = 0;
-        Set<Character> charSet = new HashSet<>();
-        while (right < s.length()) {
-            if (!charSet.contains(s.charAt(right))) {
-                res = Math.max(res, right - left + 1);
-            } else {
-                // 存在重复的字符
-                while (s.charAt(left) != s.charAt(right)) {
-                    charSet.remove(s.charAt(left++));
-                }
-                charSet.remove(left++);
+        Map<Character, Integer> map = new HashMap<>();
+        for (int left = 0, right = 0; right < s.length(); right++) {
+            char cur = s.charAt(right);
+            if (map.containsKey(cur)) {
+
             }
-            charSet.add(s.charAt(right++));
         }
-        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
