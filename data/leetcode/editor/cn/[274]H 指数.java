@@ -40,10 +40,10 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int hIndex(int[] citations) {
-        // h个数字大于等于h，其余数字小于等于h
+        // 排序
         Arrays.sort(citations);
-        int size = citations.length;
-        int h = 0, idx = size - 1;
+        int h = 0;
+        int idx = citations.length - 1;
         while(idx >= 0 && citations[idx] > h) {
             h++;
             idx--;
