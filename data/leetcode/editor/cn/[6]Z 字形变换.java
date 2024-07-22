@@ -60,7 +60,24 @@ P     I
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String convert(String s, int numRows) {
-
+        List<StringBuilder> sbList = new ArrayList<>();
+        for (int i = 0; i < numRows; i++) {
+            sbList.add(new StringBuilder());
+        }
+        int idx = 0;
+        int flag = 1;
+        for (char cur: s.toCharArray()) {
+            sbList.get(idx).append(cur);
+            idx = (idx + flag) % numRows;
+            if (idx == 0 || idx == numRows - 1) {
+                flag = - flag;
+            }
+        }
+        StringBuilder res = new StringBuilder();
+        for (StringBuilder sb: sbList) {
+            res.append(sb);
+        }
+        return res.toString();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

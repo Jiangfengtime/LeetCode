@@ -86,6 +86,37 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int myAtoi(String s) {
+        s = s.trim();
+        int flag = 1;
+        if (s.length() == 0) {
+            return 0;
+        }
+        long res = 0;
+        // 处理第一位数字
+        if (s.charAt(0) == '-') {
+            flag = -1;
+        } else if (s.charAt(0) >= '0' && s.charAt(0) <= '9') {
+            res = s.charAt(0) - '0';
+        } else if (s.charAt(0) == '+') {
+            flag = 1;
+        } else {
+            return 0;
+        }
+        for (int i = 1; i < s.length(); i++) {
+            char cur = s.charAt(i);
+            if (s.charAt(i) < '0' || s.charAt(i) > '9') {
+                return (int) (flag * res);
+            }
+            res = 10 * res + cur - '0';
+            if (res * flag > Integer.MAX_VALUE) {
+                return Integer.MAX_VALUE;
+            } else if (res * flag < Integer.MIN_VALUE) {
+                return Integer.MIN_VALUE;
+            }
+        }
+        return (int) (flag * res);
+
+
 
     }
 }
